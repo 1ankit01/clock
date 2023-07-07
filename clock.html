@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>clock</title>
+	<style type="text/css">
+		body{
+		margin: 0;
+		padding: 0;
+		background: lightpink;
+		font-family:'Courier New',Courier ,monospace ;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+	}
+	img{
+		width: 70px;
+		position: absolute;
+		left: 50%;
+		transform: translatex(-50%);
+		top: 60px;
+		z-index: 2;
+	}
+	.clock{
+		background-color:lightblue ;
+		width: 350px;
+		height: 350px;
+		border-radius: 50%;
+		border: 5px solid darkblue;
+		box-shadow: 1px 1px 5px rgba(0, 0, 0, .7);
+		position: relative;
+	}
+	.numbers div{
+		position: absolute;
+		font-size: 27px;
+		font-weight: bold;
+		color: lightgoldenrodyellow;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+
+	}
+	.twelve{
+		top: 6px;
+		left: 50%;
+		transform: translatex(-50%);
+
+	}
+	.three{
+		right: 6px;
+		top: 50%;
+		transform: translatey(-50%);
+		
+	}
+	.six{
+		bottom: 6px;
+		left: 50%;
+		transform: translatex(-50%);
+	}
+	.nine{
+		left: 6px;
+		top: 50%;
+		transform: translatey(-50%);
+	}
+	.arrows{
+		display: flex;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+	.arrows::before{
+		content: "";
+		width: 25px;
+		height: 25px;
+		background-color: darkcyan;
+		border-radius: 50%;
+		box-shadow:1px 1px 2px rgba(0, 0, 0, 0.7) ;
+		z-index: 4;
+	}
+	.arrows div{
+		background-color: white;
+		width: 7px;
+		position: absolute;
+		height: 120px;
+		transform-origin: bottom center;
+		bottom: 50%;
+		z-index: 3;
+		border-radius: 50% 50% 0 0;
+		box-shadow:1px 1px 2px rgba(0, 0, 0, 0.3) ;
+	}
+	.arrows .hours{
+		height: 80px;
+		transform: rotate(60deg);
+	}
+	.arrows .seconds{
+		transform: rotate(250deg);
+		background-color: goldenrod;
+	}
+
+	</style>
+	
+</head>
+<body>
+	<div class="clock">
+		<div class="numbers">
+			<div class="twelve">12</div>
+			<div class="three">3</div>
+			<div class="six">6</div>
+			<div class="nine">9</div>
+		</div>
+		<div class="arrows">
+			<div class="hours"></div>
+			<div class="minute"></div>
+			<div class="seconds"></div>
+		</div>
+		<img src="https://logos-download.com/wp-content/uploads/2016/06/Titan_Watches_logo.png" alt="titin-logo">
+	</div>
+	<script type="text/javascript">
+		var hourE1 = document.querySelector(".hours");
+		const minuteE1 = document.querySelector(".minute");
+		const secondsE1 = document.querySelector(".seconds");
+
+		function updateClock(){
+			const currentDate =new Date();
+			setTimeout(updateClock, 1000);
+			const hour = currentDate.getHours();
+			const minute = currentDate.getMinutes();
+			const second = currentDate.getSeconds();
+			const hourDeg =(hour / 12 ) * 360;
+			hourE1.style.transform = `rotate(${hourDeg}deg)`;
+			const minuteDeg =(minute/60 ) * 360;
+			minuteE1.style.transform = `rotate(${minuteDeg}deg)`;
+			const secondsDeg =(second /60 ) * 360;
+			secondsE1.style.transform = `rotate(${secondsDeg}deg)`;
+			
+		}
+
+		updateClock();
+		//setInterval(updateClock, 1000)
+		
+	</script>
+</body>
+</html>
